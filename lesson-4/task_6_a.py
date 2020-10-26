@@ -9,22 +9,12 @@
 Во втором также необходимо предусмотреть условие, при котором повторение элементов списка будет прекращено.
 """
 
-
 # Решение пункта а
 
 
-def enter(line):
-    """
-            Рекурсивная функция, которая возвращает ввод данных, если ввод был корректным.
-        """
-    number = input(line)
-    try:
-        assert float(number) % 1 == 0
-        return number
-    except ValueError:
-        return enter(line)
-    except AssertionError:
-        return enter(line)
+from sys import argv
+
+name, origin_start, origin_end = argv
 
 
 def my_iter(start, end):
@@ -36,6 +26,4 @@ def my_iter(start, end):
         start += 1
 
 
-origin_start = enter("Введите начальное число\n>>>:")
-origin_end = enter("Введите конечное число\n>>>:")
 print(*list(my_iter(int(origin_start), int(origin_end))))
