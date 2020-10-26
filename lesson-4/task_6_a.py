@@ -14,6 +14,9 @@
 
 
 def enter(line):
+    """
+            Рекурсивная функция, которая возвращает ввод данных, если ввод был корректным.
+        """
     number = input(line)
     try:
         assert float(number) % 1 == 0
@@ -25,6 +28,9 @@ def enter(line):
 
 
 def my_iter(start, end):
+    """
+            Итератор принемающий старт и конец.
+        """
     while start <= end:
         yield start
         start += 1

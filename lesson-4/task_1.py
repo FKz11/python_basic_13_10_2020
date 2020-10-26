@@ -9,6 +9,9 @@ name, origin_work, origin_rate, origin_prize = argv
 
 
 def salary(work, rate, prize):
+    """
+            Функция, которая считает по формуле.
+        """
     return work * rate + prize
 
 

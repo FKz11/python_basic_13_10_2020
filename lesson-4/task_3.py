@@ -6,6 +6,9 @@
 
 
 def my_range(start, end):
+    """
+            Генератор, аналог функции range(), в которую передаётся толька старт и конец.
+        """
     while start < end:
         yield start
         start += 1

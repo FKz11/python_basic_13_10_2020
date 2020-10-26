@@ -10,6 +10,9 @@
 
 
 def enter(line):
+    """
+            Рекурсивная функция, которая возвращает ввод данных, если ввод был корректным.
+        """
     number = input(line)
     try:
         assert float(number) % 1 == 0 and float(number) > 0
@@ -21,12 +24,18 @@ def enter(line):
 
 
 def my_range(start, end):
+    """
+            Генератор, аналог функции range(), в которую передаётся толька старт и конец.
+        """
     while start < end:
         yield start
         start += 1
 
 
 def factorial(end):
+    """
+            Генератор, который принимает конец n и выдаёт факториалы  1! ... n!
+        """
     for i in my_range(1, end + 1):
         result = 1
         for j in my_range(1, i + 1):
@@ -35,6 +44,9 @@ def factorial(end):
 
 
 def factorial_list(end):
+    """
+            Генератор, перебирающий факториалы 1! ... n!
+        """
     for i in factorial(end):
         yield i
 

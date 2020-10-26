@@ -7,12 +7,18 @@
 
 
 def my_range(start, end):
+    """
+            Генератор, аналог функции range(), в которую передаётся толька старт и конец.
+        """
     while start < end:
         yield start
         start += 1
 
 
 def my_reduce(func, data):
+    """
+            Функция, аналог функции reduce().
+        """
     while len(data) > 1:
         data = [func(data[0], data[1])] + data[2:]
     return data
