@@ -14,17 +14,17 @@
 
 from sys import argv
 
-name, origin_data, origin_end = argv
+name, origin_data = argv
 
 
-def my_iter(data, end):
+def my_iter(data):
     """
-            Итератор принемающий список и конец.
+            Итератор принемающий список.
         """
     i = 0
-    while i < end:
+    while i < 20:
         yield data[i % len(data)]
         i += 1
 
 
-print(*list(my_iter(origin_data.split(','), int(origin_end))))
+print(*list(my_iter(origin_data.split(','))))

@@ -14,16 +14,16 @@
 
 from sys import argv
 
-name, origin_start, origin_end = argv
+name, origin_start = argv
 
 
-def my_iter(start, end):
+def my_iter(start):
     """
             Итератор принемающий старт и конец.
         """
-    while start <= end:
+    while start <= 20:
         yield start
         start += 1
 
 
-print(*list(my_iter(int(origin_start), int(origin_end))))
+print(*list(my_iter(int(origin_start))))
