@@ -19,5 +19,5 @@ def enter(line):
 
 
 my_list = enter("Введите числа через пробел\n>>>:")
-new_list = [a for a in my_list[1:] if float(a) > float(my_list[my_list.index(a) - 1])]
+new_list = [a for index, a in enumerate(my_list[1:]) if float(a) > float(my_list[index])]
 print(*new_list)
