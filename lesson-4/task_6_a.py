@@ -19,7 +19,7 @@ name, origin_start = argv
 
 def my_iter(start):
     """
-            Итератор принемающий старт и конец.
+            Итератор принемающий старт.
         """
     while start <= 20:
         yield start
