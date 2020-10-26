@@ -9,6 +9,9 @@
 
 
 def my_range(length):
+    """
+            Генератор, аналог функции range(), в которую передаётся толька длина.
+        """
     i = 0
     while i < length:
         yield i
@@ -16,6 +19,9 @@ def my_range(length):
 
 
 def enter(line):
+    """
+            Рекурсивная функция, которая возвращает ввод данных в виде списка, если ввод был корректным.
+        """
     words = input(line).split(' ')
     try:
         for i in words:
@@ -26,10 +32,16 @@ def enter(line):
 
 
 def upper_word(word):
+    """
+            Функция подьема первой буквы в верхний регистр слова.
+         """
     return word[0].upper() + word[1:]
 
 
 def upper_words(words):
+    """
+            Функция подьема первой буквы в верхний регистр всех слов.
+        """
     for i in my_range(len(words)):
         words[i] = upper_word(words[i])
     return words

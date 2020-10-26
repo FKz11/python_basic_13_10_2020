@@ -6,6 +6,9 @@
 
 
 def enter(line):
+    """
+            Рекурсивная функция, которая возвращает ввод данных, если ввод был корректным.
+        """
     number = input(line)
     try:
         float(number)
@@ -15,6 +18,9 @@ def enter(line):
 
 
 def sum_2max(a, b, c):
+    """
+            Функция суммы двух наибольших.
+        """
     if a >= c and b >= c:
         return a + b
     if a >= b and c >= b:

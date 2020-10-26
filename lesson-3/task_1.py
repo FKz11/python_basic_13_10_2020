@@ -5,6 +5,9 @@
 
 
 def enter(line):
+    """
+            Рекурсивная функция, которая возвращает ввод данных, если ввод был корректным.
+        """
     number = input(line)
     try:
         float(number)
@@ -18,6 +21,9 @@ def enter(line):
 
 
 def division(a, b):
+    """
+            Функция деления.
+        """
     return a / b
 
 

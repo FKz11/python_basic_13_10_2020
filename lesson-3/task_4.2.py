@@ -12,6 +12,9 @@
 # Решение без **
 
 def my_range(length):
+    """
+            Генератор, аналог функции range(), в которую передаётся толька длина.
+        """
     i = 0
     while i < length:
         yield i
@@ -19,6 +22,9 @@ def my_range(length):
 
 
 def enter(line):
+    """
+            Рекурсивная функция, которая возвращает ввод данных, если ввод был корректным.
+        """
     number = input(line)
     try:
         if line == "Введите число\n>>>:":
@@ -33,6 +39,9 @@ def enter(line):
 
 
 def degree(x, y):
+    """
+            Функция возведения в степень.
+        """
     result = 1
     for _ in my_range(-y):
         result /= x

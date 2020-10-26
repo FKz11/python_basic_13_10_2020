@@ -7,6 +7,9 @@
 
 
 def enter(line):
+    """
+            Рекурсивная функция, которая возвращает ввод данных, если ввод был корректным.
+        """
     argument = input(line)
     try:
         if line == "Введите год рождения\n>>>:":
@@ -17,6 +20,9 @@ def enter(line):
 
 
 def data(name, surname, year_of_birth, city_of_residence, email, phone_number):
+    """
+            Функция возвращающая отформатированные данные.
+        """
     return f'{name}, {surname}, {year_of_birth}, {city_of_residence}, {email}, {phone_number}'
 
 
