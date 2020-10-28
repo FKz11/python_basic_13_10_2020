@@ -1,0 +1,5 @@
+Sergeev 100000
+Shakin 80000
+Kozlukov 90000
+Popov 18000
+Kuznecov 10000
