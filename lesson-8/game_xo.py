@@ -12,16 +12,16 @@ def enter(line):
         if data == "bot":
             return False
     if line == "Введите кем вы играете X/O\n>>>:":
-        if data == "X" or data == "x" or data == "х":
+        if data == "X" or data == "x" or data == "х" or data == "Х":
             return True
-        if data == "O" or data == "o" or data == "0" or data == "о":
+        if data == "O" or data == "o" or data == "0" or data == "о" or data == "О":
             return False
     print("Ввод неверный!!!")
     return enter(line)
 
 
 class Xo:
-    array = [['&', '&', '&'], ['&', '&', '&'], ['&', '&', '&']]
+    array = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     dictionary = {'a': 0, 'b': 1, 'c': 2, '1': 2, '2': 1, '3': 0}
     free = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
     count_turn = 0
@@ -39,9 +39,11 @@ class Xo:
             self.x_or_o_bot = 'X'
 
     def __str__(self):
-        result = f'3 | {self.array[0][0]}    {self.array[0][1]}    {self.array[0][2]}\n2 | {self.array[1][0]}    '
-        result += f'{self.array[1][1]}    {self.array[1][2]}\n1 | {self.array[2][0]}    {self.array[2][1]}    '
-        result += f'{self.array[2][2]}\n    -    -    -\n    a    b    c'
+        result = f'  |-----|-----|-----|\n3 |  {self.array[0][0]}  |  {self.array[0][1]}  '
+        result += f'|  {self.array[0][2]}  |\n  |-----|-----|-----|\n2 |  {self.array[1][0]}  |  '
+        result += f'{self.array[1][1]}  |  {self.array[1][2]}  |\n  |-----|-----|-----|\n1 '
+        result += f'|  {self.array[2][0]}  |  {self.array[2][1]}  |  '
+        result += f'{self.array[2][2]}  |\n  |-----|-----|-----|\n     a     b     c'
         return result
 
     def enter_cell(self):
