@@ -4,6 +4,22 @@
 import random
 
 
+def enter(line):
+    data = input(line)
+    if line == "Введите кто ходит первым bot/player\n>>>:":
+        if data == "player":
+            return True
+        if data == "bot":
+            return False
+    if line == "Введите кем вы играете X/O\n>>>:":
+        if data == "X" or data == "x" or data == "х":
+            return True
+        if data == "O" or data == "o" or data == "0" or data == "о":
+            return False
+    print("Ввод неверный!!!")
+    return enter(line)
+
+
 class Xo:
     array = [['&', '&', '&'], ['&', '&', '&'], ['&', '&', '&']]
     dictionary = {'a': 0, 'b': 1, 'c': 2, '1': 2, '2': 1, '3': 0}
@@ -14,14 +30,11 @@ class Xo:
 
     def __init__(self, name, first_turn, x_or_o):
         self.name = name
-        if first_turn == "player":
-            self.first_turn = True
-        if first_turn == "bot":
-            self.first_turn = False
-        if x_or_o == "X":
+        self.first_turn = first_turn
+        if x_or_o:
             self.x_or_o_player = 'X'
             self.x_or_o_bot = 'O'
-        if x_or_o == "O":
+        if not x_or_o:
             self.x_or_o_player = 'O'
             self.x_or_o_bot = 'X'
 
@@ -31,19 +44,26 @@ class Xo:
         result += f'{self.array[2][2]}\n    -    -    -\n    a    b    c'
         return result
 
+    def enter_cell(self):
+        result = input("Введите координату клетки в формате b1\n>>>:")
+        if result in self.free:
+            return result
+        print("Ввод неверный или клетка уже занята!!!")
+        return self.enter_cell()
+
     def turn_player(self):
-        enter = input("Введите координату клетки в формате b1\n>>>:")
-        if enter in self.free:
-            self.array[self.dictionary[enter[1]]][self.dictionary[enter[0]]] = self.x_or_o_player
-            self.free.remove(enter)
+        cell = self.enter_cell()
+        if cell in self.free:
+            self.array[self.dictionary[cell[1]]][self.dictionary[cell[0]]] = self.x_or_o_player
+            self.free.remove(cell)
             return True
         else:
             return self.turn_player()
 
     def turn_bot(self):
-        enter = random.choice(self.free)
-        self.array[self.dictionary[enter[1]]][self.dictionary[enter[0]]] = self.x_or_o_bot
-        self.free.remove(enter)
+        cell = random.choice(self.free)
+        self.array[self.dictionary[cell[1]]][self.dictionary[cell[0]]] = self.x_or_o_bot
+        self.free.remove(cell)
         return True
 
     def win_lose(self):
@@ -106,7 +126,7 @@ class Xo:
 
 
 origin_name = input("Введите имя\n>>>:")
-origin_first_turn = input("Введите кто ходит первым bot/player\n>>>:")
-origin_x_or_o = input("Введите кем вы играете X/O\n>>>:")
+origin_first_turn = enter("Введите кто ходит первым bot/player\n>>>:")
+origin_x_or_o = enter("Введите кем вы играете X/O\n>>>:")
 game_1 = Xo(origin_name, origin_first_turn, origin_x_or_o)
 game_1.play()
