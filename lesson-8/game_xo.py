@@ -39,11 +39,14 @@ class Xo:
             self.x_or_o_bot = 'X'
 
     def __str__(self):
-        result = f'  |-----|-----|-----|\n3 |  {self.array[0][0]}  |  {self.array[0][1]}  '
-        result += f'|  {self.array[0][2]}  |\n  |-----|-----|-----|\n2 |  {self.array[1][0]}  |  '
-        result += f'{self.array[1][1]}  |  {self.array[1][2]}  |\n  |-----|-----|-----|\n1 '
-        result += f'|  {self.array[2][0]}  |  {self.array[2][1]}  |  '
-        result += f'{self.array[2][2]}  |\n  |-----|-----|-----|\n     a     b     c'
+        result = f'  |-----|-----|-----|\n'
+        result += f'3 |  {self.array[0][0]}  |  {self.array[0][1]}  |  {self.array[0][2]}  |\n'
+        result += f'  |-----|-----|-----|\n'
+        result += f'2 |  {self.array[1][0]}  |  {self.array[1][1]}  |  {self.array[1][2]}  |\n'
+        result += f'  |-----|-----|-----|\n'
+        result += f'1 |  {self.array[2][0]}  |  {self.array[2][1]}  |  {self.array[2][2]}  |\n'
+        result += f'  |-----|-----|-----|\n'
+        result += f'     a     b     c'
         return result
 
     def enter_cell(self):
