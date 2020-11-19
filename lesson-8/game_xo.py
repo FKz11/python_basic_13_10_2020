@@ -6,19 +6,19 @@ import random
 
 def enter(line):
     data = input(line)
-    if line == "Choose difficulty easy/medium/hard\n>>>:":
-        if data == "easy" or data == "легко":
+    if line == "Choose difficulty easy/medium/hard or e/m/h\n>>>:":
+        if data == "e" or data == "easy" or data == "легко":
             return "easy"
-        if data == "medium" or data == "средне":
+        if data == "m" or data == "medium" or data == "средне":
             return "medium"
-        if data == "hard" or data == "сложно":
+        if data == "h" or data == "hard" or data == "сложно":
             return "hard"
-    if line == "Enter who goes first bot/player\n>>>:":
-        if data == "player" or data == "игрок":
+    if line == "Enter who goes first bot/player or b/p\n>>>:":
+        if data == "p" or data == "player" or data == "игрок":
             return True
-        if data == "bot" or data == "бот":
+        if data == "b" or data == "bot" or data == "бот":
             return False
-    if line == "Who do you play X/O\n>>>:":
+    if line == "Who do you play x/o\n>>>:":
         if data == "X" or data == "x" or data == "х" or data == "Х":
             return True
         if data == "O" or data == "o" or data == "0" or data == "О" or data == "о":
@@ -28,11 +28,7 @@ def enter(line):
 
 
 class Xo:
-    array = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     dictionary = {'a': 0, 'b': 1, 'c': 2, '1': 2, '2': 1, '3': 0}
-    free = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
-    count_move = 0
-    win = ''
 
     def __init__(self, level, name, first_move, x_or_o):
         self.level = level
@@ -44,6 +40,10 @@ class Xo:
         if not x_or_o:
             self.x_or_o_player = 'O'
             self.x_or_o_bot = 'X'
+        self.array = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+        self.free = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
+        self.count_move = 0
+        self.win = ''
 
     def __str__(self):
         result = f'  |-----|-----|-----|\n'
@@ -325,9 +325,13 @@ class Xo:
         return True
 
 
-origin_level = enter("Choose difficulty easy/medium/hard\n>>>:")
-origin_name = input("Enter a name\n>>>:")
-origin_first_move = enter("Enter who goes first bot/player\n>>>:")
-origin_x_or_o = enter("Who do you play X/O\n>>>:")
-game = Xo(origin_level, origin_name, origin_first_move, origin_x_or_o)
-game.play()
+q = 0
+games = []
+while True:
+    origin_level = enter("Choose difficulty easy/medium/hard or e/m/h\n>>>:")
+    origin_name = input("Enter a name\n>>>:")
+    origin_first_move = enter("Enter who goes first bot/player or b/p\n>>>:")
+    origin_x_or_o = enter("Who do you play x/o\n>>>:")
+    games.append(Xo(origin_level, origin_name, origin_first_move, origin_x_or_o))
+    games[q].play()
+    q += 1
