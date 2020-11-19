@@ -159,7 +159,7 @@ class Xo:
                 self.array[2][0] = self.x_or_o_bot
                 flag = False
             elif self.array[2][0] == x_or_o and self.array[2][1] == ' ' and self.array[2][2] == x_or_o:
-                self.array[0][1] = self.x_or_o_bot
+                self.array[2][1] = self.x_or_o_bot
                 flag = False
             elif self.array[2][0] == x_or_o and self.array[2][1] == x_or_o and self.array[2][2] == ' ':
                 self.array[2][2] = self.x_or_o_bot
