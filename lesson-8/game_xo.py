@@ -1,31 +1,29 @@
 """
-Игра крестики-нолики.
-Не успел доделать сложного бота, расписал только атаку через центр, но не защиту.
+Tic-tac-toe game.
 """
 import random
-import copy
 
 
 def enter(line):
     data = input(line)
-    if line == "Выберите сложность легко/средне/сложно\n>>>:":
-        if data == "легко":
+    if line == "Choose difficulty easy/medium/hard\n>>>:":
+        if data == "easy" or data == "легко":
             return "easy"
-        if data == "средне":
+        if data == "medium" or data == "средне":
             return "medium"
-        if data == "сложно":
+        if data == "hard" or data == "сложно":
             return "hard"
-    if line == "Введите кто первый ходит бот/игрок\n>>>:":
-        if data == "игрок":
+    if line == "Enter who goes first bot/player\n>>>:":
+        if data == "player" or data == "игрок":
             return True
-        if data == "бот":
+        if data == "bot" or data == "бот":
             return False
-    if line == "Кем вы играете X/O\n>>>:":
+    if line == "Who do you play X/O\n>>>:":
         if data == "X" or data == "x" or data == "х" or data == "Х":
             return True
         if data == "O" or data == "o" or data == "0" or data == "О" or data == "о":
             return False
-    print("Ввод неверный!!!")
+    print("Invalid input!!!")
     return enter(line)
 
 
@@ -59,10 +57,10 @@ class Xo:
         return result
 
     def enter_cell(self):
-        result = input("Введите клетку в формате b1\n>>>:")
+        result = input("Enter the cell in the format b1\n>>>:")
         if result in self.free:
             return result
-        print("Ввод неверный или клетка уже занята!!!")
+        print("The input is incorrect or the cell is already occupied!!!")
         return self.enter_cell()
 
     def delete_free(self):
@@ -84,17 +82,6 @@ class Xo:
             self.free.remove('b1')
         elif self.array[2][2] != ' ' and 'c1' in self.free:
             self.free.remove('c1')
-
-    def turn_clockwise_90(self):
-        buf_array = copy.deepcopy(self.array)
-        self.array[0][0] = buf_array[2][0]
-        self.array[0][1] = buf_array[1][0]
-        self.array[0][2] = buf_array[0][0]
-        self.array[1][2] = buf_array[0][1]
-        self.array[2][2] = buf_array[0][2]
-        self.array[2][1] = buf_array[1][2]
-        self.array[2][0] = buf_array[2][2]
-        self.array[1][0] = buf_array[2][1]
 
     def move_player(self):
         cell = self.enter_cell()
@@ -177,7 +164,6 @@ class Xo:
             elif self.array[2][0] == x_or_o and self.array[2][1] == x_or_o and self.array[2][2] == ' ':
                 self.array[2][2] = self.x_or_o_bot
                 flag = False
-
             elif self.array[0][0] == ' ' and self.array[1][0] == x_or_o and self.array[2][0] == x_or_o:
                 self.array[0][0] = self.x_or_o_bot
                 flag = False
@@ -235,6 +221,43 @@ class Xo:
                     self.array[0][2] == self.x_or_o_player and self.array[2][1] == self.x_or_o_player):
                 self.array[0][0] = self.x_or_o_bot
                 flag = False
+        elif self.count_move == 1:
+            if self.array[1][1] == self.x_or_o_player:
+                self.array[0][2] = self.x_or_o_bot
+                flag = False
+            else:
+                self.array[1][1] = self.x_or_o_bot
+                flag = False
+        elif self.count_move == 3:
+            if self.array[1][1] == self.x_or_o_player and self.array[2][0] == self.x_or_o_player:
+                self.array[0][0] = self.x_or_o_bot
+                flag = False
+            elif (self.array[0][0] == self.x_or_o_player and self.array[2][2] == self.x_or_o_player) or (
+                    self.array[0][2] == self.x_or_o_player and self.array[2][0] == self.x_or_o_player):
+                self.array[0][1] = self.x_or_o_bot
+                flag = False
+            elif (self.array[0][0] == self.x_or_o_player and self.array[2][1] == self.x_or_o_player) or (
+                    self.array[2][2] == self.x_or_o_player and self.array[1][0] == self.x_or_o_player) or (
+                    self.array[2][1] == self.x_or_o_player and self.array[1][0] == self.x_or_o_player):
+                self.array[2][0] = self.x_or_o_bot
+                flag = False
+            elif (self.array[0][0] == self.x_or_o_player and self.array[1][2] == self.x_or_o_player) or (
+                    self.array[2][2] == self.x_or_o_player and self.array[0][1] == self.x_or_o_player) or (
+                    self.array[0][1] == self.x_or_o_player and self.array[1][2] == self.x_or_o_player):
+                self.array[0][2] = self.x_or_o_bot
+                flag = False
+            elif (self.array[0][2] == self.x_or_o_player and self.array[2][1] == self.x_or_o_player) or (
+                    self.array[2][0] == self.x_or_o_player and self.array[1][2] == self.x_or_o_player) or (
+                    self.array[2][1] == self.x_or_o_player and self.array[1][2] == self.x_or_o_player):
+                self.array[2][2] = self.x_or_o_bot
+                flag = False
+            elif (self.array[0][2] == self.x_or_o_player and self.array[1][0] == self.x_or_o_player) or (
+                    self.array[2][0] == self.x_or_o_player and self.array[0][1] == self.x_or_o_player) or (
+                    self.array[0][1] == self.x_or_o_player and self.array[1][0] == self.x_or_o_player) or (
+                    self.array[0][1] == self.x_or_o_player and self.array[2][1] == self.x_or_o_player) or (
+                    self.array[1][0] == self.x_or_o_player and self.array[1][2] == self.x_or_o_player):
+                self.array[0][0] = self.x_or_o_bot
+                flag = False
         if not flag:
             self.delete_free()
         else:
@@ -259,7 +282,7 @@ class Xo:
                 self.array[0][2] == self.array[1][2] == self.array[2][2] == self.x_or_o_bot) or (
                 self.array[0][0] == self.array[1][1] == self.array[2][2] == self.x_or_o_bot) or (
                 self.array[2][0] == self.array[1][1] == self.array[0][2] == self.x_or_o_bot):
-            self.win = 'Бот'
+            self.win = 'Bot'
             return True
         return False
 
@@ -271,40 +294,40 @@ class Xo:
             move_bot = self.move_bot_medium
         if self.level == "hard":
             move_bot = self.move_bot_hard
-        print(f"---------{self.name} vs бот----ход {self.count_move}---------")
+        print(f"---------{self.name} vs bot----move {self.count_move}---------")
         print(self.__str__())
         print("----------------------------------------")
         if not self.first_move:
             move_bot()
             self.count_move += 1
-            print(f"---------{self.name} vs bot----turn {self.count_move}---------")
+            print(f"---------{self.name} vs bot----move {self.count_move}---------")
             print(self.__str__())
             print("----------------------------------------")
         while True:
             self.move_player()
             self.count_move += 1
-            print(f"---------{self.name} vs бот----ход {self.count_move}---------")
+            print(f"---------{self.name} vs bot----move {self.count_move}---------")
             print(self.__str__())
             print("----------------------------------------")
             if self.win_lose() or self.count_move == 9:
                 break
             move_bot()
             self.count_move += 1
-            print(f"---------{self.name} vs бот----ход {self.count_move}---------")
+            print(f"---------{self.name} vs bot----move {self.count_move}---------")
             print(self.__str__())
             print("----------------------------------------")
             if self.win_lose() or self.count_move == 9:
                 break
         if self.count_move == 9:
-            print("Ничья!!!")
+            print("Draw!!!")
         else:
-            print(f'{self.win} выиграл!!!')
+            print(f'{self.win} won!!!')
         return True
 
 
-origin_level = enter("Выберите сложность легко/средне/сложно\n>>>:")
-origin_name = input("Введите имя\n>>>:")
-origin_first_move = enter("Введите кто первый ходит бот/игрок\n>>>:")
-origin_x_or_o = enter("Кем вы играете X/O\n>>>:")
+origin_level = enter("Choose difficulty easy/medium/hard\n>>>:")
+origin_name = input("Enter a name\n>>>:")
+origin_first_move = enter("Enter who goes first bot/player\n>>>:")
+origin_x_or_o = enter("Who do you play X/O\n>>>:")
 game = Xo(origin_level, origin_name, origin_first_move, origin_x_or_o)
 game.play()
