@@ -318,7 +318,7 @@ class Xo:
             print("----------------------------------------")
             if self.win_lose() or self.count_move == 9:
                 break
-        if self.count_move == 9:
+        if self.win == '':
             print("Draw!!!")
         else:
             print(f'{self.win} won!!!')
